@@ -261,16 +261,16 @@ html, body {
 const userName  = sessionStorage.getItem("name")   || "--";
 const userEmpId = sessionStorage.getItem("empId")  || "--";
 const userShift = sessionStorage.getItem("shift")  || "--";
-const userRoute = sessionStorage.getItem("route")  || "--";
-const userNode  = sessionStorage.getItem("node")   || "--";
+// const userRoute = sessionStorage.getItem("route")  || "--";
+// const userNode  = sessionStorage.getItem("node")   || "--";
     
 
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("empName").innerText     = userName;
     document.getElementById("empIdField").innerText = userEmpId;
     document.getElementById("shiftField").innerText = userShift;
-    document.getElementById("routeField").innerText = userRoute;
-    document.getElementById("nodeField").innerText  = userNode;
+    // document.getElementById("routeField").innerText = userRoute;
+    // document.getElementById("nodeField").innerText  = userNode;
         // Fill side menu top fields dynamically
     const empIdField = document.getElementById("menuEmpId");
     const empNameField = document.getElementById("menuEmpName");
