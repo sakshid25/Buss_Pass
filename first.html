@@ -72,17 +72,17 @@
         <option value="12:30-22:00">12:30 - 22:00</option>
     </select>
 
-    <select id="route">
+    <!-- <select id="route">
         <option value="">Select Route</option>
         <option value="VASAI">VASAI</option>
         <option value="BANDRA">BANDRA</option>
-    </select>
+    </select> -->
 
-    <select id="node">
+    <!-- <select id="node">
         <option value="">Select Nodal Point</option>
         <option value="Bhabola">Bhabola</option>
         <option value="Bahar Cinema">Bahar Cinema (Near Sagar Hotel)</option>
-    </select>
+    </select> -->
 
     <button onclick="goNext()">Continue</button>
 </div>
@@ -92,8 +92,8 @@ function goNext() {
     const name  = document.getElementById("userName").value.trim();
     const empId = document.getElementById("empId").value.trim();
     const shift = document.getElementById("shift").value;
-    const route = document.getElementById("route").value;
-    const node  = document.getElementById("node").value;
+    // const route = document.getElementById("route").value;
+    // const node  = document.getElementById("node").value;
 
     if (!name || !empId || !shift || !route || !node) {
         alert("Please fill all fields");
@@ -104,8 +104,8 @@ function goNext() {
     sessionStorage.setItem("name", name);
     sessionStorage.setItem("empId", empId);
     sessionStorage.setItem("shift", shift);
-    sessionStorage.setItem("route", route);
-    sessionStorage.setItem("node", node);
+    // sessionStorage.setItem("route", route);
+    // sessionStorage.setItem("node", node);
 
     // ➡️ Go to bus pass page
     window.location.href = "rp.html";
