@@ -37,8 +37,14 @@
 
 <script>
     // SHA-256 hash of the correct password
-    const storedHash =
-        "7e1f5e5f3d2a4a7c1bb0c1c4d0c8cdb6e8f4c5d7e2d0dbe9d9b8fbbf0d6f8b6a";
+    // const storedHash =
+    //     "7e1f5e5f3d2a4a7c1bb0c1c4d0c8cdb6e8f4c5d7e2d0dbe9d9b8fbbf0d6f8b6a";
+    const crypto = require("crypto");
+
+const storedHash = crypto.createHash("sha256")
+  .update("myapr", "utf8")
+  .digest("hex");
+
 
     async function sha256(text) {
         const data = new TextEncoder().encode(text);
