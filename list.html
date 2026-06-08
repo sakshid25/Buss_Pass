@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dropdown Flow</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+  background: #f2f3f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Plus Button */
+.plus-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #2c5d87;
+  color: white;
+  font-size: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Dropdown Container */
+.dropdown {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #f2f3f5;
+  display: none;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+/* Card */
+.card {
+  display: flex;
+  align-items: stretch;
+  background: #f7f7f7;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+/* Number */
+.serial {
+  width: 45px;
+  text-align: center;
+  font-weight: 600;
+  color: #333;
+  font-size: 15px;
+  padding: 14px 0;
+  border-right: 1px solid #ddd;
+  background: #f0f0f0;
+}
+
+/* Content */
+.content {
+  flex: 1;
+  padding: 10px 12px;
+}
+
+/* Name */
+.name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2c5d87;
+  outline: none;
+}
+
+/* ID */
+.name span {
+  font-weight: 500;
+  color: #4aa3d9;
+}
+
+/* Location */
+.location {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #808080;
+  display: flex;
+  align-items: center;
+}
+
+.location::before {
+  content: "📍";
+  margin-right: 5px;
+}
+
+/* Mobile tuning */
+@media (max-width: 600px) {
+  .name { font-size: 13px; }
+  .location { font-size: 11px; }
+}
+</style>
+
+</head>
+<body>
+
+<!-- Plus Button -->
+<div class="plus-btn" id="plusBtn">+</div>
+
+<!-- Dropdown -->
+<div class="dropdown" id="dropdown">
+
+  <div class="card">
+    <div class="serial">1</div>
+    <div class="content">
+      <div class="name" contenteditable="true">
+        Shivam Umesh Kumar Mishra <span>(46355530)</span>
+      </div>
+      <div class="location">
+        Civic Center (Nalasopara Station Flyover)
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="serial">2</div>
+    <div class="content">
+      <div class="name" contenteditable="true">
+        Ida Dantis <span>(448002)</span>
+      </div>
+      <div class="location">Evershine City</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="serial">3</div>
+    <div class="content">
+      <div class="name" contenteditable="true">
+        Ankitesh Akhilesh Singh <span>(46357246)</span>
+      </div>
+      <div class="location">Evershine City</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="serial">4</div>
+    <div class="content">
+      <div class="name" contenteditable="true">
+        Anand Dilip Gupta <span>(30043842)</span>
+      </div>
+      <div class="location">Achole Talav</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="serial">5</div>
+    <div class="content">
+      <div class="name" contenteditable="true">
+        Rohan Piyush Patel <span>(30043842)</span>
+      </div>
+      <div class="location">Evershine City</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="serial">6</div>
+    <div class="content">
+      <div class="name" contenteditable="true">
+        Rohan Piyush Patel <span>(30043842)</span>
+      </div>
+      <div class="location">Evershine City</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="serial">7</div>
+    <div class="content">
+      <div class="name" contenteditable="true">
+        Rohan Piyush Patel <span>(30043842)</span>
+      </div>
+      <div class="location">Evershine City</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="serial">8</div>
+    <div class="content">
+      <div class="name" contenteditable="true">
+        Rohan Piyush Patel <span>(30043842)</span>
+      </div>
+      <div class="location">Evershine City</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="serial">9</div>
+    <div class="content">
+      <div class="name" contenteditable="true">
+        Rohan Piyush Patel <span>(30043842)</span>
+      </div>
+      <div class="location">Evershine City</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="serial">10</div>
+    <div class="content">
+      <div class="name" contenteditable="true">
+        Rohan Piyush Patel <span>(30043842)</span>
+      </div>
+      <div class="location">Evershine City</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="serial">11</div>
+    <div class="content">
+      <div class="name" contenteditable="true">
+        Rohan Piyush Patel <span>(30043842)</span>
+      </div>
+      <div class="location">Evershine City</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="serial">12</div>
+    <div class="content">
+      <div class="name" contenteditable="true">
+        Rohan Piyush Patel <span>(30043842)</span>
+      </div>
+      <div class="location">Evershine City</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const plusBtn = document.getElementById("plusBtn");
+const dropdown = document.getElementById("dropdown");
+
+/* Open dropdown */
+plusBtn.addEventListener("click", () => {
+  plusBtn.style.display = "none";
+  dropdown.style.display = "block";
+});
+
+/* Close dropdown when clicking anywhere */
+dropdown.addEventListener("click", () => {
+  dropdown.style.display = "none";
+  plusBtn.style.display = "flex";
+});
+</script>
+
+</body>
+</html>
+

@@ -1,93 +1,265 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#0a8ed9" />
-  <title>Bus Pass Booking</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a8ed9">
 
-  <!-- Roboto Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<title>Bus Pass Booking</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: 'Roboto', sans-serif;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
-    body {
-      margin: 0;
-      background: #f2f4f7;
-      -webkit-font-smoothing: antialiased;
-    }
+<style>
+* {
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
 
-    .header {
-      position: relative;
-      width: 100%;
-    }
+body {
+  margin: 0;
+  background: #f2f4f7;
+}
 
-    .header img {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: contain;
-    }
+/* HEADER */
+.header {
+  position: relative;
+  width: 100%;
+}
 
-    .name {
-      position: absolute;
-      top: 35.5%;        /* 30% from top */
-      right: 40%;      /* 70% from right */
-      font-size: 12px;
-      font-weight: 500;
-      color: #000;
-opacity:0.75;
-      white-space: nowrap;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.25);
-    }
-  </style>
+.header img {
+  width: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+/* DATE TEXT */
+.name {
+  position: absolute;
+  top: 35.5%;
+  right: 40%;
+  font-size: 12px;
+  font-weight: 500;
+  color: #000;
+  opacity: 0.75;
+}
+
+/* PLUS BUTTON */
+.plus-btn {
+  position: absolute;
+  top: 2490px;
+  right: 330px;
+  font-size: 270px;
+  cursor: pointer;
+  z-index: 10;
+  font-weight: 20px;
+  user-select: none;
+}
+
+/* DROPDOWN */
+.dropdown {
+  position: absolute;
+  top: 4430px; /* below + button */
+  right: 175px;
+  width: 3700px;
+  max-height: 65vh;
+  overflow-y: auto;
+  display: none;
+  background: #f2f4f7;
+}
+
+/* CARD */
+.card {
+  display: flex;
+  background: #f7f7f7;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* OPEN */
+.card.show {
+  animation: fadeIn 0.22s ease forwards;
+}
+
+/* CLOSE */
+.card.hide {
+  animation: fadeOut 0.18s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+/* LEFT SERIAL */
+.serial {
+  width: 45px;
+  font-size: 60px;
+  text-align: center;
+  font-weight: 600;
+  padding: 14px 0;
+  border-right: 1px solid #ddd;
+  background: #f0f0f0;
+}
+
+/* CONTENT */
+.content {
+  padding: 100px 12px;
+  flex: 1;
+}
+
+.name-text {
+  font-size: 100px;
+  font-weight: 600;
+  color: #2c5d87;
+}
+
+.name-text span {
+  color: #4aa3d9;
+}
+
+.location {
+  margin-top: 4px;
+  font-size: 60px;
+  color: #808080;
+}
+
+.location::before {
+  content: "📍";
+  margin-right: 5px;
+}
+</style>
+
 </head>
+
 <body>
 
-  <div class="header">
-    <img id="headerImage" src="" alt="Header Image">
-    <div class="name"><span id="currentDay"></span>-<span id="currentMonth"></span> - <span id="tripType"></span>
-    </div>
+<!-- HEADER -->
+<div class="header">
+  <img id="headerImage" src="">
+  
+  <div class="name">
+    <span id="currentDay"></span>-
+    <span id="currentMonth"></span> -
+    <span id="tripType"></span>
   </div>
 
-  <script>
-    // Set current day (dd)
-    const today = new Date();
-    const day = String(today.getDate()).padStart(2, '0');
-    document.getElementById('currentDay').textContent = day;
-    document.getElementById("tripType").textContent = today.getHours() < 12 ? "Pick" : "Drop";
-    const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-    document.getElementById("currentMonth").textContent = months[today.getMonth()];
+  <!-- + BUTTON -->
+  <div class="plus-btn" id="plusBtn">+</div>
 
-    // Change image based on time
-    const hour = today.getHours(); // 0 - 23
-    const headerImage = document.getElementById('headerImage');
+  <!-- DROPDOWN -->
+  <div class="dropdown" id="dropdown">
 
-    if (hour > 4 && hour <9) {
-      headerImage.src = "IMG_2893.jpeg";
-    } 
-    else if(hour > 9 && hour <12){
-      headerImage.src = "IMG_2440.jpeg";
-    }
-      else if(hour>12 && hour <19){
-        headerImage.src = "IMG_2893.jpeg";
-      }
-    else {
-      headerImage.src = "IMG_2440.jpeg";
-    }
-  </script>
+    <div class="card"><div class="serial">1</div>
+      <div class="content">
+        <div class="name-text">Shivam Umesh Kumar Mishra <span>(46355530)</span></div>
+        <div class="location">Civic Center (Nalasopara Station Flyover)</div>
+      </div>
+    </div>
+
+    <div class="card"><div class="serial">2</div>
+      <div class="content">
+        <div class="name-text">Ida Dantis <span>(448002)</span></div>
+        <div class="location">Evershine City</div>
+      </div>
+    </div>
+
+    <div class="card"><div class="serial">3</div>
+      <div class="content">
+        <div class="name-text">Ankitesh Akhilesh Singh <span>(46357246)</span></div>
+        <div class="location">Evershine City</div>
+      </div>
+    </div>
+
+    <div class="card"><div class="serial">4</div>
+      <div class="content">
+        <div class="name-text">Anand Dilip Gupta <span>(30043842)</span></div>
+        <div class="location">Achole Talav</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+/* DATE + IMAGE LOGIC (UNCHANGED) */
+const today = new Date();
+const day = String(today.getDate()).padStart(2, '0');
+document.getElementById('currentDay').textContent = day;
+
+document.getElementById("tripType").textContent =
+  today.getHours() < 12 ? "Pick" : "Drop";
+
+const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+document.getElementById("currentMonth").textContent = months[today.getMonth()];
+
+const hour = today.getHours();
+const headerImage = document.getElementById('headerImage');
+
+if (hour > 4 && hour < 9) {
+  headerImage.src = "IMG_2893.jpeg";
+} else if (hour > 9 && hour < 12) {
+  headerImage.src = "IMG_2440.jpeg";
+} else if (hour > 12 && hour < 19) {
+  headerImage.src = "IMG_2893.jpeg";
+} else {
+  headerImage.src = "IMG_2440.jpeg";
+}
+
+/* DROPDOWN TOGGLE */
+const plusBtn = document.getElementById("plusBtn");
+const dropdown = document.getElementById("dropdown");
+const cards = document.querySelectorAll(".card");
+
+let isOpen = false;
+
+plusBtn.addEventListener("click", () => {
+
+  if (!isOpen) {
+    isOpen = true;
+    plusBtn.textContent = "−";
+    dropdown.style.display = "block";
+
+    cards.forEach((card, index) => {
+      card.classList.remove("hide");
+      setTimeout(() => {
+        card.classList.add("show");
+      }, index * 70);
+    });
+
+  } else {
+    isOpen = false;
+    plusBtn.textContent = "+";
+
+    cards.forEach((card, index) => {
+      setTimeout(() => {
+        card.classList.remove("show");
+        card.classList.add("hide");
+      }, (cards.length - index - 1) * 70);
+    });
+
+    setTimeout(() => {
+      dropdown.style.display = "none";
+      cards.forEach(card => card.classList.remove("hide"));
+    }, cards.length * 70);
+  }
+
+});
+</script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-

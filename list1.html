@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Toggle Dropdown</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+  background: #f2f3f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Wrapper */
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* PLUS BUTTON */
+.plus-btn {
+  width: 60px;
+  height: 60px;
+  font-size: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* DROPDOWN */
+.dropdown {
+  position: absolute;
+  top: 70px;
+  width: 300px;
+  max-height: 65vh;
+  overflow-y: auto;
+  background: #f2f3f5;
+  padding: 8px;
+  display: none;
+}
+
+/* CARD */
+.card {
+  display: flex;
+  background: #f7f7f7;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  overflow: hidden;
+
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+/* OPEN */
+.card.show {
+  animation: fadeIn 0.22s ease forwards;
+}
+
+/* CLOSE */
+.card.hide {
+  animation: fadeOut 0.18s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+/* SERIAL */
+.serial {
+  width: 45px;
+  text-align: center;
+  font-weight: 600;
+  padding: 14px 0;
+  border-right: 1px solid #ddd;
+  background: #f0f0f0;
+}
+
+/* CONTENT */
+.content {
+  padding: 10px 12px;
+  flex: 1;
+}
+
+.name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2c5d87;
+}
+
+.name span {
+  color: #4aa3d9;
+}
+
+.location {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #808080;
+}
+
+.location::before {
+  content: "📍";
+  margin-right: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+  <div class="plus-btn" id="plusBtn">+</div>
+
+  <div class="dropdown" id="dropdown">
+
+    <div class="card"><div class="serial">1</div>
+      <div class="content">
+        <div class="name">Shivam Umesh Kumar Mishra <span>(46355530)</span></div>
+        <div class="location">Civic Center (Nalasopara Station Flyover)</div>
+      </div>
+    </div>
+
+    <div class="card"><div class="serial">2</div>
+      <div class="content">
+        <div class="name">Ida Dantis <span>(448002)</span></div>
+        <div class="location">Evershine City</div>
+      </div>
+    </div>
+
+    <div class="card"><div class="serial">3</div>
+      <div class="content">
+        <div class="name">Ankitesh Akhilesh Singh <span>(46357246)</span></div>
+        <div class="location">Evershine City</div>
+      </div>
+    </div>
+
+    <div class="card"><div class="serial">4</div>
+      <div class="content">
+        <div class="name">Anand Dilip Gupta <span>(30043842)</span></div>
+        <div class="location">Achole Talav</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+const plusBtn = document.getElementById("plusBtn");
+const dropdown = document.getElementById("dropdown");
+const cards = document.querySelectorAll(".card");
+
+let isOpen = false;
+
+/* TOGGLE FUNCTION */
+plusBtn.addEventListener("click", () => {
+
+  if (!isOpen) {
+    // OPEN
+    isOpen = true;
+    plusBtn.textContent = "−";   // ✅ change to minus
+    dropdown.style.display = "block";
+
+    cards.forEach((card, index) => {
+      card.classList.remove("hide");
+      setTimeout(() => {
+        card.classList.add("show");
+      }, index * 70);
+    });
+
+  } else {
+    // CLOSE (reverse)
+    isOpen = false;
+    plusBtn.textContent = "+";   // ✅ change back to plus
+
+    cards.forEach((card, index) => {
+      setTimeout(() => {
+        card.classList.remove("show");
+        card.classList.add("hide");
+      }, (cards.length - index - 1) * 70);
+    });
+
+    setTimeout(() => {
+      dropdown.style.display = "none";
+      cards.forEach(card => card.classList.remove("hide"));
+    }, cards.length * 70);
+  }
+});
+</script>
+
+</body>
+</html>
